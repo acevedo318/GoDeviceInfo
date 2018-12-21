@@ -5,12 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.List;
+
 /**
  * Created by Kevin A. Acevedo on 21/12/2018.
  */
 public class Adaptador extends BaseAdapter {
 
     Context context;
+    List<ItemList> itemList;
 
 
     @Override
