@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Ajustes</string>
+    <string name="navigation_drawer_open">Cajón de navegación abierto</string>
+    <string name="navigation_drawer_close">Cajón de navegación cerrado</string>
+    <string name="nav_header_desc">Encabezado de navegación</string>
+    <string name="nav_memory">Almacenamiento</string>
+    <string name="nav_network">Red</string>
+    <string name="nav_subtitle_comunicate">Comunica</string>
+    <string name="nav_share">Compartir</string>
+    <string name="nav_send">Enviar</string>
+    <string name="Manufacturer">Fabricante</string>
+    <string name="Model">Modelo</string>
+    <string name="Product">Producto</string>
+    <string name="AndroidVersion">Versión de Android</string>
+    <string name="APIversion">Versión API</string>
+    <string name="CodeName">Nombre clave</string>
+    <string name="Board">Placa (Board)</string>
+    <string name="Desconocido">Desconocido</string>
+    <string name="nav_android" translatable="false">Dispositivo</string>
+    <string name="action_information">Información</string>
+</resources>
