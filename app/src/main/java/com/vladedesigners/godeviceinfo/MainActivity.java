@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.text.Html;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,15 +18,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+
     ListView listView;
     List<String> valores = new ArrayList<>();
+    List<ItemList> elementos = new ArrayList<>();
     Recursos res = new Recursos(this);
+    boolean isRed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -111,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        valores.clear();
+        elementos.clear();
 
         if (id == R.id.nav_android) {
             // Handle the camera action
@@ -152,7 +160,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void Default(){
-        valores.clear();
+        elementos.clear();
         AbrirNavAndroid();
         RecargarAdapter();
 
@@ -162,23 +170,24 @@ public class MainActivity extends AppCompatActivity
 
         this.setTitle(R.string.nav_android);
 
-        valores.clear();
+        elementos.clear();
         listView = (ListView)findViewById(R.id.listViewPrincipal);
 
         //Software
-        valores.add(res.getString(R.string.SOFTWARE));
+        elementos.add(new ItemList(res.getString(R.string.SOFTWARE)));
 
-        valores.add(res.getString(R.string.AndroidVersion)+"\n " + Build.VERSION.RELEASE);
-        valores.add(res.getString(R.string.APIversion)+"\n " + Build.VERSION.SDK_INT);
-        valores.add(res.getString(R.string.CodeName)+"\n " + res.AndroidOSName());
+        elementos.add(new ItemList(res.getString(R.string.AndroidVersion),Build.VERSION.RELEASE));
+        elementos.add(new ItemList(res.getString(R.string.APIversion),Build.VERSION.SDK_INT + ""));
+        elementos.add(new ItemList(res.getString(R.string.CodeName),res.AndroidOSName()));
 
         //Hardware
-        valores.add(res.getString(R.string.hardware));
+        elementos.add(new ItemList(res.getString(R.string.hardware)));
 
-        valores.add(res.getString(R.string.Manufacturer)+"\n " + Build.MANUFACTURER);
-        valores.add(res.getString(R.string.Model)+"\n " + Build.MODEL);
-        valores.add(res.getString(R.string.Product)+"\n " + Build.PRODUCT);
-        valores.add(res.getString(R.string.Board)+"\n " + Build.BOARD);
+        elementos.add(new ItemList(res.getString(R.string.Manufacturer),Build.MANUFACTURER));
+        elementos.add(new ItemList(res.getString(R.string.Model),Build.MODEL));
+        elementos.add(new ItemList(res.getString(R.string.Product),Build.PRODUCT));
+        elementos.add(new ItemList(res.getString(R.string.Board),Build.BOARD));
+
 
 
 
@@ -220,15 +229,26 @@ public class MainActivity extends AppCompatActivity
 
         this.setTitle(R.string.nav_network);
 
+        elementos.add(new ItemList("Gráfico"));
+
+
+
+        elementos.add(new ItemList());
+        isRed = true;
 
 
     }
 
 
+
+
     public void RecargarAdapter(){
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,valores);
-        listView.setAdapter(adapter);
+        Adaptador miAdaptador = new Adaptador(this,elementos);
+        listView.setAdapter(miAdaptador);
+
+
+
     }
 
 }

@@ -7,6 +7,7 @@ import com.jjoe64.graphview.GraphView;
  */
 public class ItemList {
 
+    private int Id = 0;
     private String property;
     private String value;
     private GraphView graph;
@@ -15,6 +16,7 @@ public class ItemList {
 
         this.property = property;
         this.value = value;
+        this.graph = null;
 
     }
 
@@ -40,6 +42,18 @@ public class ItemList {
 
     public String getValue() {
         return value;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public void setGraph(GraphView graph) {
+        this.graph = graph;
     }
 
     public GraphView getGraph() {
